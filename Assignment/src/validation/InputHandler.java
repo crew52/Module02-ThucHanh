@@ -23,7 +23,6 @@ public class InputHandler {
         return phoneNumber;
     }
 
-    // Nhập nhóm và kiểm tra
     public static String getGroup(Scanner scanner) {
         String group;
         while (true) {
@@ -38,7 +37,6 @@ public class InputHandler {
         return group;
     }
 
-    // Nhập họ tên và kiểm tra
     public static String getFullName(Scanner scanner) {
         String fullName;
         while (true) {
@@ -53,7 +51,6 @@ public class InputHandler {
         return fullName;
     }
 
-    // Nhập giới tính và kiểm tra
     public static String getGender(Scanner scanner) {
         String gender;
         while (true) {
@@ -68,7 +65,6 @@ public class InputHandler {
         return gender;
     }
 
-    // Nhập địa chỉ và kiểm tra
     public static String getAddress(Scanner scanner) {
         String address;
         while (true) {
@@ -83,7 +79,6 @@ public class InputHandler {
         return address;
     }
 
-    // Nhập ngày sinh và kiểm tra
     public static LocalDate getBirthDate(Scanner scanner) {
         LocalDate birthDate = null;
         while (true) {
@@ -103,7 +98,6 @@ public class InputHandler {
         return birthDate;
     }
 
-    // Nhập email và kiểm tra
     public static String getEmail(Scanner scanner) {
         String email;
         while (true) {

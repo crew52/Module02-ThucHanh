@@ -1,17 +1,17 @@
 package entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Contact {
+public class Contact implements Serializable {
     private String phoneNumber;
     private String group;
     private String fullName;
     private String gender;
     private String address;
-    private LocalDate birthDate;  // Sử dụng LocalDate cho ngày sinh
+    private LocalDate birthDate;
     private String email;
 
-    // Constructor
     public Contact(String phoneNumber, String group, String fullName, String gender,
                    String address, LocalDate birthDate, String email) {
         this.phoneNumber = phoneNumber;
@@ -23,7 +23,6 @@ public class Contact {
         this.email = email;
     }
 
-    // Getter and Setter methods
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -80,7 +79,6 @@ public class Contact {
         this.email = email;
     }
 
-    // Method to display contact information
     public void displayContactInfo() {
         System.out.println("Phone Number: " + phoneNumber);
         System.out.println("Group: " + group);

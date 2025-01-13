@@ -3,6 +3,7 @@ package service;
 import entity.Contact;
 import validation.InputHandler;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ public class ContactService implements IContactService {
         LocalDate birthDate = InputHandler.getBirthDate(scanner);
         String email = InputHandler.getEmail(scanner);
 
-        // Thêm liên hệ vào danh sách
         Contact contact = new Contact(phoneNumber, group, fullName, gender, address, birthDate, email);
         contactList.add(contact);
         System.out.println("Đã thêm liên hệ: " + contact.getPhoneNumber());
@@ -29,11 +29,9 @@ public class ContactService implements IContactService {
 
     @Override
     public void updateContact(String phoneNumber, Contact updatedContact) {
-        // Tìm liên hệ theo số điện thoại
         for (int i = 0; i < contactList.size(); i++) {
             Contact contact = contactList.get(i);
             if (contact.getPhoneNumber().equals(phoneNumber)) {
-                // Cập nhật thông tin của liên hệ
                 contact.setGroup(updatedContact.getGroup());
                 contact.setFullName(updatedContact.getFullName());
                 contact.setGender(updatedContact.getGender());
@@ -42,7 +40,7 @@ public class ContactService implements IContactService {
                 contact.setEmail(updatedContact.getEmail());
 
                 System.out.println("Cập nhật thành công liên hệ: " + phoneNumber);
-                return; // Kết thúc sau khi cập nhật
+                return;
             }
         }
 
@@ -51,13 +49,12 @@ public class ContactService implements IContactService {
 
     @Override
     public void deleteContact(String phoneNumber) {
-        // Tìm và xóa liên hệ theo số điện thoại
         for (int i = 0; i < contactList.size(); i++) {
             Contact contact = contactList.get(i);
             if (contact.getPhoneNumber().equals(phoneNumber)) {
-                contactList.remove(i); // Xóa liên hệ khỏi danh sách
+                contactList.remove(i);
                 System.out.println("Đã xóa liên hệ: " + phoneNumber);
-                return; // Kết thúc sau khi xóa
+                return;
             }
         }
 
@@ -65,18 +62,15 @@ public class ContactService implements IContactService {
     }
 
     @Override
-    public Contact searchContact(String query) {
-        // Tìm kiếm liên hệ theo số điện thoại, tên, hoặc nhóm
+    public void searchContact(String query) {
         for (Contact contact : contactList) {
             if (contact.getPhoneNumber().contains(query) || contact.getFullName().contains(query) || contact.getGroup().contains(query)) {
                 System.out.println("Tìm thấy liên hệ: " + contact.getFullName());
                 contact.displayContactInfo();
-                return contact; // Trả về liên hệ tìm được
+                return;
             }
         }
-
         System.out.println("Không tìm thấy liên hệ với từ khóa: " + query);
-        return null; // Nếu không tìm thấy
     }
 
     @Override
@@ -87,8 +81,7 @@ public class ContactService implements IContactService {
         }
 
         int count = 0;
-        for (int i = 0; i < contactList.size(); i++) {
-            Contact contact = contactList.get(i);
+        for (Contact contact : contactList) {
             contact.displayContactInfo();
             System.out.println("-------");
 
@@ -107,17 +100,27 @@ public class ContactService implements IContactService {
 
     @Override
     public void readFromFile() {
-
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("contacts.dat"))) {
+            contactList = (List<Contact>) ois.readObject();  // Đọc danh sách liên hệ từ tệp
+            System.out.println("Đã đọc danh bạ từ tệp.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Lỗi khi đọc từ tệp: " + e.getMessage());
+        }
     }
 
     @Override
     public void writeToFile() {
-
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("contacts.dat"))) {
+            oos.writeObject(contactList);
+            System.out.println("Đã lưu danh bạ vào tệp.");
+        } catch (IOException e) {
+            System.out.println("Lỗi khi ghi vào tệp: " + e.getMessage());
+        }
     }
 
     @Override
     public List<Contact> getContactList() {
-        return contactList;  // Trả về danh sách liên hệ
+        return contactList;
     }
 
     public void addContact(Contact contact) {
