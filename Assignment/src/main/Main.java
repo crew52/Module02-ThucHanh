@@ -4,6 +4,7 @@ import entity.Contact;
 import service.ContactService;
 import validation.InputHandler;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -37,10 +38,10 @@ public class Main {
                     contactService.addContact(scanner);
                     break;
                 case 3:
-                    System.out.print("Nhập số điện thoại của liên hệ cần cập nhật: ");
+                    System.out.print("Enter the phone number of the contact to update: ");
                     String updatePhone = scanner.nextLine();
 
-                    System.out.println("Nhập thông tin mới cho liên hệ:");
+                    System.out.println("Enter the new information for the contact:");
                     Contact updatedContact = new Contact(
                             updatePhone,
                             InputHandler.getGroup(scanner),
@@ -54,12 +55,12 @@ public class Main {
                     contactService.updateContact(updatePhone, updatedContact);
                     break;
                 case 4:
-                    System.out.print("Nhập số điện thoại của liên hệ cần xóa: ");
+                    System.out.print("Enter the phone number of the contact to delete: ");
                     String deletePhone = scanner.nextLine();
                     contactService.deleteContact(deletePhone);
                     break;
                 case 5:
-                    System.out.print("Nhập từ khóa tìm kiếm (số điện thoại, tên hoặc nhóm): ");
+                    System.out.print("Enter the search keyword (phone number, name, or group): ");
                     String query = scanner.nextLine();
 
                     contactService.searchContact(query);
