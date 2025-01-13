@@ -8,14 +8,14 @@ public class InputHandler {
     public static String getPhoneNumber(Scanner scanner) {
         String phoneNumber;
         while (true) {
-            System.out.print("Nhập số điện thoại: ");
+            System.out.print("Enter phone number: ");
             phoneNumber = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(phoneNumber)) {
-                System.out.println("Số điện thoại là bắt buộc.");
+                System.out.println("Phone number is required.");
                 continue;
             }
             if (!PhoneNumberValidator.isValid(phoneNumber)) {
-                System.out.println("Số điện thoại không hợp lệ, phải có 10 chữ số.");
+                System.out.println("Invalid phone number, it must contain 10 digits.");
                 continue;
             }
             break;
@@ -26,10 +26,10 @@ public class InputHandler {
     public static String getGroup(Scanner scanner) {
         String group;
         while (true) {
-            System.out.print("Nhập nhóm: ");
+            System.out.print("Enter group: ");
             group = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(group)) {
-                System.out.println("Nhóm là bắt buộc.");
+                System.out.println("Group is required.");
                 continue;
             }
             break;
@@ -40,10 +40,10 @@ public class InputHandler {
     public static String getFullName(Scanner scanner) {
         String fullName;
         while (true) {
-            System.out.print("Nhập họ tên: ");
+            System.out.print("Enter full name: ");
             fullName = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(fullName)) {
-                System.out.println("Họ tên là bắt buộc.");
+                System.out.println("Full name is required.");
                 continue;
             }
             break;
@@ -54,10 +54,10 @@ public class InputHandler {
     public static String getGender(Scanner scanner) {
         String gender;
         while (true) {
-            System.out.print("Nhập giới tính: ");
+            System.out.print("Enter gender: ");
             gender = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(gender)) {
-                System.out.println("Giới tính là bắt buộc.");
+                System.out.println("Gender is required.");
                 continue;
             }
             break;
@@ -68,10 +68,10 @@ public class InputHandler {
     public static String getAddress(Scanner scanner) {
         String address;
         while (true) {
-            System.out.print("Nhập địa chỉ: ");
+            System.out.print("Enter address: ");
             address = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(address)) {
-                System.out.println("Địa chỉ là bắt buộc.");
+                System.out.println("Address is required.");
                 continue;
             }
             break;
@@ -82,14 +82,14 @@ public class InputHandler {
     public static LocalDate getBirthDate(Scanner scanner) {
         LocalDate birthDate = null;
         while (true) {
-            System.out.print("Nhập ngày sinh (yyyy-MM-dd): ");
+            System.out.print("Enter birthdate (yyyy-MM-dd): ");
             String birthDateStr = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(birthDateStr)) {
-                System.out.println("Ngày sinh là bắt buộc.");
+                System.out.println("Birthdate is required.");
                 continue;
             }
             if (!BirthDateValidator.isValid(birthDateStr)) {
-                System.out.println("Ngày sinh không hợp lệ. Định dạng đúng là yyyy-MM-dd.");
+                System.out.println("Invalid birthdate. The correct format is yyyy-MM-dd.");
                 continue;
             }
             birthDate = LocalDate.parse(birthDateStr);
@@ -101,14 +101,14 @@ public class InputHandler {
     public static String getEmail(Scanner scanner) {
         String email;
         while (true) {
-            System.out.print("Nhập email: ");
+            System.out.print("Enter email: ");
             email = scanner.nextLine();
             if (!RequiredFieldValidator.isNotEmpty(email)) {
-                System.out.println("Email là bắt buộc.");
+                System.out.println("Email is required.");
                 continue;
             }
             if (!EmailValidator.isValid(email)) {
-                System.out.println("Email không hợp lệ.");
+                System.out.println("Invalid email.");
                 continue;
             }
             break;
