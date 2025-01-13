@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public interface IContactService {
     // Thêm mới một đối tượng Contact
-    void addContact(Contact contact);
+    void addContact(Scanner scanner);
 
     // Cập nhật một đối tượng Contact
     void updateContact(String phoneNumber, Contact updatedContact);

@@ -2,6 +2,7 @@ package main;
 
 import entity.Contact;
 import service.ContactService;
+import validation.InputHandler;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -35,16 +36,38 @@ public class Main {
                     contactService.viewContacts(scanner);
                     break;
                 case 2:
-//                addContact(scanner);
+                    contactService.addContact(scanner);
                     break;
                 case 3:
-//                updateContact(scanner);
+                    // Nhập thông tin để cập nhật liên hệ
+                    System.out.print("Nhập số điện thoại của liên hệ cần cập nhật: ");
+                    String updatePhone = scanner.nextLine(); // Nhập số điện thoại cần cập nhật
+
+                    // Nhập thông tin mới cho liên hệ
+                    System.out.println("Nhập thông tin mới cho liên hệ:");
+                    Contact updatedContact = new Contact(
+                            updatePhone,
+                            InputHandler.getGroup(scanner),
+                            InputHandler.getFullName(scanner),
+                            InputHandler.getGender(scanner),
+                            InputHandler.getAddress(scanner),
+                            InputHandler.getBirthDate(scanner),
+                            InputHandler.getEmail(scanner)
+                    );
+
+                    contactService.updateContact(updatePhone, updatedContact);  // Gọi phương thức updateContact
                     break;
                 case 4:
-//                deleteContact(scanner);
+                    System.out.print("Nhập số điện thoại của liên hệ cần xóa: ");
+                    String deletePhone = scanner.nextLine();
+                    contactService.deleteContact(deletePhone);  // Gọi phương thức deleteContact
                     break;
                 case 5:
-//                searchContact(scanner);
+                    System.out.print("Nhập từ khóa tìm kiếm (số điện thoại, tên hoặc nhóm): ");
+                    String query = scanner.nextLine();  // Đọc từ khóa tìm kiếm
+
+                    // Gọi phương thức tìm kiếm trong ContactService
+                    contactService.searchContact(query);  // Tìm kiếm theo từ khóa nhập vào
                     break;
                 case 6:
 //                readFromFile();

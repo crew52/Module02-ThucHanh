@@ -87,7 +87,5 @@ public class Contact {
         System.out.println("Full Name: " + fullName);
         System.out.println("Gender: " + gender);
         System.out.println("Address: " + address);
-        System.out.println("Birth Date: " + birthDate);  // Display LocalDate
-        System.out.println("Email: " + email);
     }
 }
